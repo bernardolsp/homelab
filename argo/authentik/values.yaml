@@ -1,0 +1,44 @@
+authentik:
+  authentik:
+    secret_key: "_#wJEdBrTj8wNxKv/7_0=i]G#$7KC[p=*#nc_jbGA&B:FNZpqJ"
+    postgresql:
+      host: "" 
+      user: file:///postgres-creds/username
+      password: file:///postgres-creds/password
+    redis:
+      host: ""  # Leaving empty to let the in-cluster redis handle it, and not override due to ExternalSecrets
+
+  server:
+    ingress:
+      enabled: true
+      hosts:
+        - authentik.bernardolopes.com
+      ingressClassName: cloudflare-tunnel
+    volumes:
+      - name: postgres-creds
+        secret:
+          secretName: authentik-external-secret
+    volumeMounts:
+      - name: postgres-creds
+        mountPath: /postgres-creds
+        readOnly: true
+
+  worker:
+    volumes:
+      - name: postgres-creds
+        secret:
+          secretName: authentik-external-secret
+    volumeMounts:
+      - name: postgres-creds
+        mountPath: /postgres-creds
+        readOnly: true
+
+  postgresql:
+    enabled: true
+    auth:
+      # These values below MUST MATCH the files mentioned in authentik.postgresql.user & authentik.postgresql.password
+      username: "authentik"         # Consider managing these values too
+      password: "InitialPostgresPassword" # Only used for initial setup. Will be overwritten by External Secrets
+                                      # This MUST match the username that will be created for authentik.
+  redis:
+    enabled: true
