@@ -33,22 +33,22 @@ authentik:
         mountPath: /postgres-creds
         readOnly: true
 
-  postgresql:
+postgresql:
+  enabled: true
+  persistence:
     enabled: true
-    persistence:
-      enabled: true
-      storageClass: local-path
-      accessModes:
-        - ReadWriteOnce
-    auth:
-      # These values below MUST MATCH the files mentioned in authentik.postgresql.user & authentik.postgresql.password
-      username: "authentik"         # Consider managing these values too
-      password: "InitialPostgresPassword" # Only used for initial setup. Will be overwritten by External Secrets
-                                      # This MUST match the username that will be created for authentik.
-  redis:
+    storageClass: local-path
+    accessModes:
+      - ReadWriteOnce
+  auth:
+    # These values below MUST MATCH the files mentioned in authentik.postgresql.user & authentik.postgresql.password
+    username: "authentik"         # Consider managing these values too
+    password: "InitialPostgresPassword" # Only used for initial setup. Will be overwritten by External Secrets
+                                    # This MUST match the username that will be created for authentik.
+redis:
+  enabled: true
+  persistence:
     enabled: true
-    persistence:
-      enabled: true
-      storageClass: local-path
-      accessModes:
-        - ReadWriteOnce
+    storageClass: local-path
+    accessModes:
+      - ReadWriteOnce
