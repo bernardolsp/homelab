@@ -1,0 +1,8 @@
+apiVersion: v2
+name: STRRLIngress
+description: A Helm chart for STRRL Ingress Controller
+version: 0.1.0
+dependencies:
+  - name: cloudflare-tunnel-ingress-controller
+    repository: https://helm.strrl.dev
+    version: 0.0.18

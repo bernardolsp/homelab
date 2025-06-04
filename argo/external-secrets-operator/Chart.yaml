@@ -1,0 +1,8 @@
+apiVersion: v2
+name: ExternalSecretsOperator
+description: A Helm chart for ESO
+version: 0.1.0
+dependencies:
+  - name: external-secrets
+    repository: https://charts.external-secrets.io
+    version: 0.17.0
