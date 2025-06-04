@@ -6,3 +6,11 @@ dependencies:
   - name: authentik
     repository: https://charts.goauthentik.io
     version: 2025.4.1
+  - name: postgresql
+    version: 16.7.4
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: postgresql.enabled
+  - name: redis
+    version: 21.1.6
+    repository: oci://registry-1.docker.io/bitnamicharts
+    condition: redis.enabled
