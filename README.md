@@ -24,6 +24,8 @@ kubectl create secret generic awssm-secret \
   --from-literal=access-key="YOUR_AWS_ACCESS_KEY_ID" \
   --from-literal=secret-access-key="YOUR_AWS_SECRET_ACCESS_KEY" \
   -n external-secrets-operator
+
+  and on -n strrl
 ```
 
 STRRL will require a Cloudflare account and a domain name. The API Key is stored in a secret in the cluster. It is available via the CustomResource ExternalSecret.
