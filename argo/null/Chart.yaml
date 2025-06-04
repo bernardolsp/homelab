@@ -1,0 +1,4 @@
+apiVersion: v2
+name: null-resources
+description: A Helm chart for hacking around null resources
+version: 0.1.0
